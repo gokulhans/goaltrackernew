@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, setDoc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { db, auth } from './../../firebase-config';
 import { Link, useParams } from 'react-router-dom';
@@ -14,14 +14,20 @@ function EditProject() {
   const [desc, setDesc] = useState("");
   const [project, setProject] = useState({});
 
-  const projectsCollectionRef = collection(db, "projects");
+  const projectsCollectionRef = collection(db, "projects","d4OZgzj19TitosqKBnnj");
   let navigate = useNavigate();
 
-  const createProject = async () => {
-    await addDoc(projectsCollectionRef, {
-      name,
-      desc,
-      // author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+
+  const editProject = async () => {
+    // collection(db, "projects").doc(id)
+    // await setDoc(projectsCollectionRef, {
+    //   name:name,
+    //   desc:desc,
+    //   // author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+    // });
+    await updateDoc(projectsCollectionRef, {
+      name: "true",
+      desc:"halo"
     });
     navigate("/");
   };
@@ -70,7 +76,7 @@ function EditProject() {
             }}
           />
         </div>
-        <button onClick={createProject} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        <button onClick={editProject} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
       </div>
     </div>
 
