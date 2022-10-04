@@ -4,6 +4,20 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
+@layer components {
+  .center {
+      @apply flex pt-24 justify-center w-screen min-h-screen;
+  }
+
+  .center-div {
+      @apply border-gray-300 rounded-lg shadow-xl;
+  }
+
+  .margin {
+      @apply mx-4 sm:mx-8 md:mx-16 lg:mx-32 xl:mx-48 mt-8;
+  }
+}
+
 body{
   margin: 0;
   padding: 0;
