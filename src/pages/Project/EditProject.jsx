@@ -14,21 +14,11 @@ function EditProject() {
   const [desc, setDesc] = useState("");
   const [project, setProject] = useState({});
 
-  const projectsCollectionRef = collection(db, "projects","d4OZgzj19TitosqKBnnj");
+  const projectsCollectionRef = collection(db, "projects");
   let navigate = useNavigate();
 
-
-  const editProject = async () => {
-    // collection(db, "projects").doc(id)
-    // await setDoc(projectsCollectionRef, {
-    //   name:name,
-    //   desc:desc,
-    //   // author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
-    // });
-    await updateDoc(projectsCollectionRef, {
-      name: "true",
-      desc:"halo"
-    });
+  const editProject = async (id) => {
+    await setDoc(doc(db, "projects", id), {name:name,desc:desc});
     navigate("/");
   };
 
@@ -76,7 +66,9 @@ function EditProject() {
             }}
           />
         </div>
-        <button onClick={editProject} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        <button onClick={() => {
+          editProject(id)
+        }} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
       </div>
     </div>
 
