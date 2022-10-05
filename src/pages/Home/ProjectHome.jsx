@@ -7,7 +7,7 @@ import { deleteDoc, doc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+
 
 function ProjectHome() {   
   const { id } = useParams();
@@ -120,11 +120,11 @@ function ProjectHome() {
                         </div>
                       </td>
                       <td className="py-4 px-6">
-                        <Link to={`/edit-task/${task.id}`} type="button" className="font-bold text-white  rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 text-blue-500" ><FontAwesomeIcon icon={solid('pencil')} /></Link>
+                        <Link to={`/edit-task/${task.id}`} type="button" className="font-bold text-white  rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 text-blue-500" >Edit</Link>
                         <button  onClick={()=>{
                               deleteTask(task.id);
                         }} 
-                        className="font-bold text-white  rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 text-red-600" ><FontAwesomeIcon icon={solid('trash')} />
+                        className="font-bold text-white  rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 text-red-600" >Delete
                         </button>
                       </td>
                     </tr>
