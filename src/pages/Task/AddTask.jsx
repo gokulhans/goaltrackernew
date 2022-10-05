@@ -22,7 +22,7 @@ function AddTask() {
       projectid:id,
       // author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
-    navigate("/");
+    navigate(`/project/${id}`);
   };
 
   // useEffect(() => {
