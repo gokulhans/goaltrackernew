@@ -18,7 +18,7 @@ function EditTask() {
   let navigate = useNavigate();
 
   const editTask = async (id) => {
-    await setDoc(doc(db, "tasks", id), {name:name,desc:desc,projectid:task.projectid});
+    await setDoc(doc(db, "tasks", id), { name: name, desc: desc, projectid: task.projectid, author: { name: auth.currentUser.displayName, id: auth.currentUser.uid } });
     navigate(`/project/${task.projectid}`);
   };
 
@@ -38,6 +38,14 @@ function EditTask() {
     }
     getDocbyId(id)
   }, []);
+
+  // useEffect(() => {
+  //   onSnapshot(tasksCollectionRef, (snapshot) => {
+  //     setTaskList(
+  //       snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+  //     );
+  //   });
+  // }, []);
 
 
   return (

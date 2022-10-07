@@ -20,7 +20,7 @@ function AddTask() {
       name,
       desc,
       projectid:id,
-      // author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+      author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
     navigate(`/project/${id}`);
   };

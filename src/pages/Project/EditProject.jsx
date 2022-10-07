@@ -18,7 +18,7 @@ function EditProject() {
   let navigate = useNavigate();
 
   const editProject = async (id) => {
-    await setDoc(doc(db, "projects", id), {name:name,desc:desc});
+    await setDoc(doc(db, "projects", id), {name:name,desc:desc,author: { name: auth.currentUser.displayName, id: auth.currentUser.uid }});
     navigate("/");
   };
 

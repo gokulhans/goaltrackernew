@@ -3,12 +3,14 @@ import Project from './../Project/Project';
 import { useEffect } from 'react';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { useState } from 'react';
-import { db } from '../../firebase-config';
+import { auth, db } from '../../firebase-config';
+import { where } from 'firebase/firestore';
+import { query } from 'firebase/firestore';
 
 function Home() {
 
   const [projectList, setProjectList] = useState([]);
-  const projectCollectionRef = collection(db, "projects");
+  const projectCollectionRef = query(collection(db, "projects"), where("author.id", "==", auth.currentUser.uid)) 
 
   useEffect(() => {
     onSnapshot(projectCollectionRef, (snapshot) => {

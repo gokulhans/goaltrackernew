@@ -15,7 +15,7 @@ function AddProject() {
     await addDoc(projectsCollectionRef, {
       name,
       desc,
-      // author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+      author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
     navigate("/");
   };
