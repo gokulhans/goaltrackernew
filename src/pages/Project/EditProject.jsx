@@ -8,17 +8,41 @@ import { deleteDoc, doc, getDoc } from 'firebase/firestore';
 function EditProject() {
   const { id } = useParams();
   console.log(id);
+  const [project, setProject] = useState({});
+  const [name, setName] = useState();
+  const [desc, setDesc] = useState();
   let docRef
   let docSnap
-  const [name, setName] = useState("");
-  const [desc, setDesc] = useState("");
-  const [project, setProject] = useState({});
+
+  useEffect(() => {
+    const getDocbyId = async (id) => {
+      docRef = doc(db, "projects", id);
+      docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        // console.log("Document data:", docSnap.data());
+        setProject(docSnap.data());
+        console.log(docSnap.data().name,docSnap.data().desc);
+        setName(docSnap.data().name)
+        setDesc(docSnap.data().desc)
+        // setAuthor(docSnap.data().author);
+        // console.log(project);
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    }
+    getDocbyId(id)
+  }, []);
+
 
   const projectsCollectionRef = collection(db, "projects");
   let navigate = useNavigate();
 
   const editProject = async (id) => {
-    await setDoc(doc(db, "projects", id), {name:name,desc:desc,author: { name: auth.currentUser.displayName, id: auth.currentUser.uid }});
+    await setDoc(doc(db, "projects", id), { name: name, desc: desc, author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },});
+
+
+    
     navigate("/");
   };
 
@@ -28,22 +52,6 @@ function EditProject() {
   //   }
   // }, []);
 
-  useEffect(() => {
-    const getDocbyId = async (id) => {
-      docRef = doc(db, "projects", id);
-      docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        setProject(docSnap.data());
-        // setAuthor(docSnap.data().author);
-        console.log(project);
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    }
-    getDocbyId(id)
-  }, []);
 
 
   return (

@@ -9,6 +9,8 @@ function Login({ setIsAuth }) {
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
       localStorage.setItem("isAuth", true);
+      localStorage.setItem("authorid",result.user.uid);
+      localStorage.setItem("authorname",result.user.displayName);
       setIsAuth(true);
       window.location = '/'
       // navigate("/");
@@ -17,11 +19,10 @@ function Login({ setIsAuth }) {
 
   return (
     <>
-      <div className="center">
-        <div className="center-div h-48 items-center">
+      <div className="w-screen flex justify-center mt-32">
+        <div className="h-48 items-center">
           <div className="mx-auto">
             <div className=" p-4 md:p-8">
-              <p className="block text-black md:text-2xl text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Login</p>
               <button className="flex justify-center items-center bg-white hover:bg-gray-100 active:bg-gray-200 border border-gray-300 focus-visible:ring ring-gray-300 text-gray-800 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3" onClick={signInWithGoogle}>
                 <svg className="w-5 h-5 shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M23.7449 12.27C23.7449 11.48 23.6749 10.73 23.5549 10H12.2549V14.51H18.7249C18.4349 15.99 17.5849 17.24 16.3249 18.09V21.09H20.1849C22.4449 19 23.7449 15.92 23.7449 12.27Z" fill="#4285F4" />

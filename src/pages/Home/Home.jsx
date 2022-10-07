@@ -10,8 +10,9 @@ import { query } from 'firebase/firestore';
 function Home() {
 
   const [projectList, setProjectList] = useState([]);
-  const projectCollectionRef = query(collection(db, "projects"), where("author.id", "==", auth.currentUser.uid)) 
-
+  let userid = localStorage.getItem("authorid");
+  const projectCollectionRef = query(collection(db, "projects"), where("author.id", "==", userid))
+  
   useEffect(() => {
     onSnapshot(projectCollectionRef, (snapshot) => {
       setProjectList(
