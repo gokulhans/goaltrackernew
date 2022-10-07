@@ -6,11 +6,6 @@ import { useEffect } from 'react';
 import { deleteDoc, doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { collection, query, where, getDocs } from "firebase/firestore";
-<<<<<<< HEAD
-=======
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
->>>>>>> 596c16cc76bac12be5da431499ccc0c1e5c16560
 
 function ProjectHome() {
   const { id } = useParams();
@@ -111,19 +106,11 @@ function ProjectHome() {
                         </div>
                       </td>
                       <td className="py-4 px-6">
-<<<<<<< HEAD
                         <Link to={`/edit-task/${task.id}`} type="button" className="font-bold  rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 text-blue-500" ><i className="fa-solid fa-pencil"></i></Link>
                         <button onClick={() => {
                           deleteTask(task.id);
                         }}
                           className="font-bol  rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 text-red-600" ><i className="fa-solid fa-trash"></i>
-=======
-                        <Link to={`/edit-task/${task.id}`} type="button" className="font-bold text-white  rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 text-blue-500" >Edit</Link>
-                        <button  onClick={()=>{
-                              deleteTask(task.id);
-                        }} 
-                        className="font-bold text-white  rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 text-red-600" >Delete
->>>>>>> 596c16cc76bac12be5da431499ccc0c1e5c16560
                         </button>
                       </td>
                     </tr>
