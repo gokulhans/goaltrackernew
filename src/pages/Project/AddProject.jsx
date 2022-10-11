@@ -10,6 +10,7 @@ function AddProject() {
   const [repo, setRepo] = useState("");
   const [host, setHost] = useState("");
   const [yt, setYt] = useState("");
+  const [status, setStatus] = useState("todo");
   
   const [link1, setLink1] = useState("");
   const [link1name, setLink1Name] = useState("");
@@ -38,6 +39,7 @@ function AddProject() {
       host,
       yt,
       link1,
+      status,
       // link2,
       // link3,
       // link4,
@@ -82,6 +84,19 @@ function AddProject() {
         </div>
 
         <div className="mb-6">
+          <label htmlFor="desc" className="text-green-500 block mb-2 text-sm font-medium dark:text-gray-300">Status</label>
+          <select defaultValue={'todo'} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            onChange={(event) => {
+              setStatus(event.target.value);
+            }}
+            >
+            <option value="todo">To Do</option>
+            <option value="onprogress">On Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+
+        <div className="mb-6">
           <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Course Link</label>
           <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="course.."
             onChange={(event) => {
@@ -119,6 +134,8 @@ function AddProject() {
             }}
           />
         </div>
+
+        
 
         {/* <div className="mb-6">
           <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Link 2</label>

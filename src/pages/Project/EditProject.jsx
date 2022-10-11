@@ -14,6 +14,7 @@ function EditProject() {
   const [repo, setRepo] = useState("");
   const [host, setHost] = useState("");
   const [yt, setYt] = useState("");
+  const [status, setStatus] = useState("todo");
 
 
   const [link1, setLink1] = useState("");
@@ -49,6 +50,7 @@ function EditProject() {
         setHost(docSnap.data().host)
         setLink1(docSnap.data().link1)
         setLink1Name(docSnap.data().link1name)
+        setStatus(docSnap.data().status)
         // setAuthor(docSnap.data().author);
         // console.log(project);
       } else {
@@ -71,6 +73,7 @@ function EditProject() {
       repo:repo,
       host:host,
       link1: link1,
+      status:status,
       // link2: link2,
       // link3: link3,
       // link4: link4,
@@ -111,6 +114,20 @@ function EditProject() {
               setDesc(event.target.value);
             }}
           />
+        </div>
+
+        <div className="mb-6">
+          <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Status</label>
+          <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" defaultValue={project.status}
+            onChange={(event) => {
+              setStatus(event.target.value);
+            }}
+            >
+            <option value={project.status}>{project.status}</option>
+            <option value="todo">To Do</option>
+            <option value="onprogress">On Progress</option>
+            <option value="completed">Completed</option>
+          </select>
         </div>
 
         <div className="mb-6">
