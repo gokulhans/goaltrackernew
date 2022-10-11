@@ -11,6 +11,9 @@ function EditProject() {
   const [project, setProject] = useState({});
   const [name, setName] = useState();
   const [desc, setDesc] = useState();
+  const [repo, setRepo] = useState("");
+  const [host, setHost] = useState("");
+  const [yt, setYt] = useState("");
 
 
   const [link1, setLink1] = useState("");
@@ -41,6 +44,11 @@ function EditProject() {
         console.log(docSnap.data().name, docSnap.data().desc);
         setName(docSnap.data().name)
         setDesc(docSnap.data().desc)
+        setYt(docSnap.data().yt)
+        setRepo(docSnap.data().repo)
+        setHost(docSnap.data().host)
+        setLink1(docSnap.data().link1)
+        setLink1Name(docSnap.data().link1name)
         // setAuthor(docSnap.data().author);
         // console.log(project);
       } else {
@@ -59,16 +67,19 @@ function EditProject() {
     await setDoc(doc(db, "projects", id), { 
       name: name,
       desc: desc,
+      yt:yt,
+      repo:repo,
+      host:host,
       link1: link1,
-      link2: link2,
-      link3: link3,
-      link4: link4,
-      link5: link5,
+      // link2: link2,
+      // link3: link3,
+      // link4: link4,
+      // link5: link5,
       link1name: link1name,
-      link2name: link2name,
-      link3name: link3name,
-      link4name: link4name,
-      link5name: link5name,
+      // link2name: link2name,
+      // link3name: link3name,
+      // link4name: link4name,
+      // link5name: link5name,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid }, });
     navigate("/");
   };
@@ -117,6 +128,31 @@ function EditProject() {
         </div>
 
         <div className="mb-6">
+          <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Course Link</label>
+          <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="course.." defaultValue={project.yt}
+            onChange={(event) => {
+              setYt(event.target.value);
+            }}
+          />
+        </div>
+        <div className="mb-6">
+          <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Repository Link</label>
+          <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="repo link.." defaultValue={project.repo}
+            onChange={(event) => {
+              setRepo(event.target.value);
+            }}
+          />
+        </div>
+        <div className="mb-6">
+          <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Host</label>
+          <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="hosted on.." defaultValue={project.host}
+            onChange={(event) => {
+              setHost(event.target.value);
+            }}
+          />
+        </div>
+
+        {/* <div className="mb-6">
           <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Link 2</label>
           <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="Name.." defaultValue={project.link2}
             onChange={(event) => {
@@ -170,11 +206,11 @@ function EditProject() {
               setLink5Name(event.target.value);
             }}
           />
-        </div>
+        </div> */}
 
         <button onClick={() => {
           editProject(id)
-        }} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        }} className="mb-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
       </div>
     </div>
 

@@ -7,6 +7,9 @@ function AddProject() {
 
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
+  const [repo, setRepo] = useState("");
+  const [host, setHost] = useState("");
+  const [yt, setYt] = useState("");
   
   const [link1, setLink1] = useState("");
   const [link1name, setLink1Name] = useState("");
@@ -31,16 +34,19 @@ function AddProject() {
     await addDoc(projectsCollectionRef, {
       name,
       desc,
+      repo,
+      host,
+      yt,
       link1,
-      link2,
-      link3,
-      link4,
-      link5,
+      // link2,
+      // link3,
+      // link4,
+      // link5,
       link1name,
-      link2name,
-      link3name,
-      link4name,
-      link5name,
+      // link2name,
+      // link3name,
+      // link4name,
+      // link5name,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
     navigate("/");
@@ -68,9 +74,34 @@ function AddProject() {
 
         <div className="mb-6">
           <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Description</label>
-          <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="desc.."
+          <textarea type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="desc.."
             onChange={(event) => {
               setDesc(event.target.value);
+            }}
+          />
+        </div>
+
+        <div className="mb-6">
+          <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Course Link</label>
+          <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="course.."
+            onChange={(event) => {
+              setYt(event.target.value);
+            }}
+          />
+        </div>
+        <div className="mb-6">
+          <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Repository Link</label>
+          <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="repo link.."
+            onChange={(event) => {
+              setRepo(event.target.value);
+            }}
+          />
+        </div>
+        <div className="mb-6">
+          <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Host</label>
+          <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="hosted on.."
+            onChange={(event) => {
+              setHost(event.target.value);
             }}
           />
         </div>
@@ -89,7 +120,7 @@ function AddProject() {
           />
         </div>
 
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Link 2</label>
           <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="Name.."
             onChange={(event) => {
@@ -143,7 +174,7 @@ function AddProject() {
               setLink5Name(event.target.value);
             }}
           />
-        </div>
+        </div> */}
 
 
         <button onClick={createProject} className="mb-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>

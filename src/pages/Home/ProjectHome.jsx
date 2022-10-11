@@ -73,7 +73,7 @@ function ProjectHome() {
 
 
       <div className='my-24'>
-        <div className='margin p-4 mx-8 md:mx-24 border rounded-md border-violet-600 shadow-xl shadow-violet-900'>
+        <div className='margin p-4 mx-8 md:mx-24 border rounded-md border-violet-600  shadow-violet-900'>
 
 
 
@@ -92,16 +92,20 @@ function ProjectHome() {
 
             <div>
               <div className="mx-5">
-                <h3 className='font-bold text-base text-gray-600'>{project.desc}</h3>
+                <h3 className='font-bold text-sm text-gray-600'>{project.desc}</h3>
               </div>
-              <section className="text-gray-500 flex justify-between px-40 py-16">
-                {heck.map((item,index) =>
-                  <>
-                    <div className="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1]" key={index}>
-                      {/* <div className="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-purple-600"> */}
-                      <a href={item.name}><h3 className="text-xl font-semibold tracking-wide">{item.link}</h3></a>
-                    </div>
-                  </>
+              <div className="flex justify-start ml-5 items-center my-3">
+                <a href={project.yt}><img className="w-5 h-5 object-contain rounded" src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="Rounded avatar" /></a>
+                <a href={project.repo}><img className="w-4 h-4 rounded mx-3" src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="Rounded avatar" /></a>
+                <a href={project.host}> <img className="w-4 h-4 rounded" src="https://cdn-icons-png.flaticon.com/512/873/873120.png" alt="Rounded avatar" /></a>
+              </div>
+              <section className="text-gray-500 flex justify-between ml-5">
+                {heck.map((item, index) =>
+                  <div className="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1]" key={index} >
+                    {/* <div className="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-purple-600"> */}
+                    <a href={item.name}><h3 className="text-sm text-red-500 font-semibold tracking-wide">{item.link}</h3></a>
+                  </div>
+
                 )}
               </section>
             </div>
@@ -125,7 +129,6 @@ function ProjectHome() {
                   </tr>
                 </thead>
                 <tbody>
-
 
                   {taskList.map((task, index) => {
                     return (

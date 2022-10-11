@@ -34,10 +34,7 @@ function Navbar() {
             ) : (
               <>
                 <li>
-                  <a href="#" className="block py-2 pr-4 pl-3 text-white rounded md:bg-transparent md:text-yellow-300 font-bold md:p-0 dark:text-white" aria-current="page">Home</a>
-                </li>
-                <li>
-                  <a href="#" className="font-bold block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-300 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Projects</a>
+                  <Link to="/" className="font-bold block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-300 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Home</Link>
                 </li>
                 <li>
                   <Link to="/add-project" className="font-bold block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-300 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">New Project</Link>
