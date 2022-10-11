@@ -12,13 +12,14 @@ function EditTask() {
   let docSnap
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
+  const [status, setStatus] = useState("todo");
   const [task, setTask] = useState({});
 
   const tasksCollectionRef = collection(db, "tasks");
   let navigate = useNavigate();
 
   const editTask = async (id) => {
-    await setDoc(doc(db, "tasks", id), { name: name, desc: desc, projectid: task.projectid, author: { name: auth.currentUser.displayName, id: auth.currentUser.uid } });
+    await setDoc(doc(db, "tasks", id), { name: name, desc: desc,status:status, projectid: task.projectid, author: { name: auth.currentUser.displayName, id: auth.currentUser.uid } });
     navigate(`/project/${task.projectid}`);
   };
 
@@ -29,6 +30,9 @@ function EditTask() {
       if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
         setTask(docSnap.data());
+        setName(docSnap.data().name)
+        setDesc(docSnap.data().desc)
+        setStatus(docSnap.data().status)
         // setAuthor(docSnap.data().author);
         console.log(task);
       } else {
@@ -68,6 +72,22 @@ function EditTask() {
             }}
           />
         </div>
+
+        <div className="mb-6">
+          <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Status</label>
+          <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" defaultValue={task.status}
+            onChange={(event) => {
+              setStatus(event.target.value);
+            }}
+            >
+            <option value={task.status}>{task.status}</option>
+            <option value="todo">To Do</option>
+            <option value="onprogress">On Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+
+
         <button onClick={() => {
           editTask(id)
         }} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
