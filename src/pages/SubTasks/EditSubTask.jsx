@@ -11,14 +11,15 @@ function EditSubTask() {
   let docRef
   let docSnap
   const [name, setName] = useState("");
-  const [desc, setDesc] = useState(""); 
+  const [desc, setDesc] = useState("");
+  const [link, setLink] = useState("");
   const [subtask, setsubTask] = useState({});
 
   const subtasksCollectionRef = collection(db, "subtasks");
   let navigate = useNavigate();
 
   const editSubTask = async (id) => {
-    await setDoc(doc(db, "subtasks", id), { name: name, desc: desc, taskid: subtask.taskid, author: { name: auth.currentUser.displayName, id: auth.currentUser.uid } });
+    await setDoc(doc(db, "subtasks", id), { name: name, desc: desc, taskid: subtask.taskid,link:link,author: { name: auth.currentUser.displayName, id: auth.currentUser.uid } });
     navigate(`/task/${subtask.taskid}`);
   };
 
@@ -31,6 +32,7 @@ function EditSubTask() {
         setsubTask(docSnap.data());
         setName(docSnap.data().name)
         setDesc(docSnap.data().desc)
+        setLink(docSnap.data().link)
         // setAuthor(docSnap.data().author);
         console.log(subtask);
       } else {
@@ -67,6 +69,14 @@ function EditSubTask() {
           <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="desc.." defaultValue={subtask.desc}
             onChange={(event) => {
               setDesc(event.target.value);
+            }}
+          />
+        </div>
+        <div className="mb-6">
+          <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Link</label>
+          <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="link.." defaultValue={subtask.link}
+            onChange={(event) => {
+              setLink(event.target.value);
             }}
           />
         </div>

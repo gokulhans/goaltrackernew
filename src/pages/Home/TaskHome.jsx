@@ -75,12 +75,9 @@ function TaskHome() {
                   <th scope="col" className="py-3 px-6">
                     Name
                   </th>
-                  <th scope="col" className="py-3 px-6">
-                    Position
-                  </th>
-                  <th scope="col" className="py-3 px-6">
-                    Status
-                  </th>
+                  {/* <th scope="col" className="py-3 px-6">
+                    Link
+                  </th> */}
                   <th scope="col" className="py-3 px-6">
                     Action
                   </th>
@@ -95,15 +92,11 @@ function TaskHome() {
                       <td className="py-4 px-6 font-bold text-base">
                         {subtask.name}
                       </td>
-                      <td className="py-4 px-6">
+                      {/* <td className="py-4 px-6">
                         {subtask.desc}
-                      </td>
+                      </td> */}
                       <td className="py-4 px-6">
-                        <div className="flex items-center">
-                          <div className="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div> Completed
-                        </div>
-                      </td>
-                      <td className="py-4 px-6">
+                        <a href={subtask.link} className="font-bold  rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 text-gray-400" target="_blank"><i className="fa-solid fa-eye"></i></a>
                         <Link to={`/edit-subtask/${subtask.id}`} type="button" className="font-bold  rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 text-blue-500" ><i className="fa-solid fa-pencil"></i></Link>
                         <button onClick={() => {
                           deleteSubTask(subtask.id);
