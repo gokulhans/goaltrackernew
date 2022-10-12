@@ -11,6 +11,7 @@ function AddSubTask() {
 
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
+  const [link, setLink] = useState("");
 
   const subtasksCollectionRef = collection(db, "subtasks");
   let navigate = useNavigate();
@@ -19,6 +20,7 @@ function AddSubTask() {
     await addDoc(subtasksCollectionRef, {
       name,
       desc,
+      link,
       taskid:id,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
@@ -48,6 +50,14 @@ function AddSubTask() {
           <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="desc.."
             onChange={(event) => {
               setDesc(event.target.value);
+            }}
+          />
+        </div>
+        <div className="mb-6">
+          <label htmlFor="desc" className="text-white block mb-2 text-sm font-medium dark:text-gray-300">Link</label>
+          <input type="text" id="desc" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder="link.."
+            onChange={(event) => {
+              setLink(event.target.value);
             }}
           />
         </div>
