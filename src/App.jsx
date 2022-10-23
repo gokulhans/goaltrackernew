@@ -29,7 +29,7 @@ function App() {
           <Route path="/confirm" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <Confirm isAuth={isAuth} />} />
           <Route path="/product/:id" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <SingleProduct isAuth={isAuth} />} />
 
-          <Route path="/project/:id" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <ProjectHome isAuth={isAuth} />} />
+          {/* <Route path="/project/:id" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <ProjectHome isAuth={isAuth} />} />
           <Route path="/add-project" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <AddProject isAuth={isAuth} />} />
           <Route path="/edit-project/:id" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <EditProject isAuth={isAuth} />} />
 
@@ -38,7 +38,7 @@ function App() {
           <Route path="/edit-task/:id" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <EditTask isAuth={isAuth} />} />
 
           <Route path="/add-subtask/:id" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <AddSubTask isAuth={isAuth} />} />
-          <Route path="/edit-subtask/:id" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <EditSubTask isAuth={isAuth} />} />
+          <Route path="/edit-subtask/:id" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <EditSubTask isAuth={isAuth} />} /> */}
 
         </Routes>
       </div>

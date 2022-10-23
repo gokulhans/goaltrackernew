@@ -1,5 +1,5 @@
 import React from 'react'
-import Project from './../Project/Project';
+// import Product from './../Product/Product';
 import { useEffect } from 'react';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { useState } from 'react';
@@ -12,37 +12,39 @@ import Product from '../../components/Cards/Product';
 
 function Home() {
 
-  const [projectList, setProjectList] = useState([]);
+  const [productList, setProductList] = useState([]);
   let userid = localStorage.getItem("authorid");
-  const projectCollectionRef = query(collection(db, "projects"), where("author.id", "==", userid))
-  
+  const productCollectionRef = query(collection(db, "products"))
+
   useEffect(() => {
-    onSnapshot(projectCollectionRef, (snapshot) => {
-      setProjectList(
+    onSnapshot(productCollectionRef, (snapshot) => {
+      setProductList(
         snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
     });
   }, []);
-  
+
   return (
-  //   <div>
-  //       <div className="p-4 grid justify-center grid-cols-1 gap-6 lg:gap-16 sm:grid-cols-2 lg:grid-cols-2 lg:mx-32 lg:mt-8">
+    //   <div>
+    //       <div className="p-4 grid justify-center grid-cols-1 gap-6 lg:gap-16 sm:grid-cols-2 lg:grid-cols-2 lg:mx-32 lg:mt-8">
 
-  //       {projectList.map((project, index) => {
-  //         return (
-  //           <Project key={index} project={project} />
-  //         )
-  //       })}
-  //       </div>
-  // </div>
+    // {productList.map((product, index) => {
+    //   return (
+    //     <Product key={index} product={product} />
+    //   )
+    // })}
+    //       </div>
+    // </div>
 
-        <div>
+    <div>
 
-<Carousel />
-<Product />
-<Product />
-<Product />
-<Product />
+      <Carousel />
+
+      {productList.map((product, index) => {
+        return (
+          <Product key={index} product={product} />
+        )
+      })}
 
     </div>
   )

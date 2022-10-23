@@ -17,7 +17,7 @@ function SingleProduct() {
   const [price, setPrice] = useState("");
 
   useEffect(() => {
-    async function ProjectGet(id) {
+    async function ProductGet(id) {
       const docRefq = doc(db, "products", id);
       try {
         const docSnap = await getDoc(docRefq);
@@ -30,13 +30,13 @@ function SingleProduct() {
         console.log(error)
       }
     }
-    ProjectGet(id)
+    ProductGet(id)
   }, []);
 
   const productsCollectionRef = collection(db, "products");
   let navigate = useNavigate();
 
-  const editProject = async () => {
+  const editProduct = async () => {
     await setDoc(doc(db, "products", id), {
       name: name,
       desc: desc,
@@ -53,7 +53,7 @@ function SingleProduct() {
       <img className="rounded-t-lg h-48 w-full object-cover" src="https://images.unsplash.com/photo-1616671276441-2f2c277b8bf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="" />
       <div className="p-2">
 
-        <h5 className="pt-5 text-3xl font-bold leading-none text-gray-900 dark:text-white">Chicken Biriyani</h5>
+        <h5 className="pt-5 text-3xl font-bold leading-none text-gray-900 dark:text-white">{product.name}</h5>
 
         <p className="pt-3 text-sm font-medium leading-none text-gray-600 dark:text-white">Deliverd With in 7.00 Am</p>
 
@@ -71,11 +71,11 @@ function SingleProduct() {
         </div>
       </Link> */}
 
-        <h2 className="pt-5 text-4xl font-black leading-none text-green-600 dark:text-white">110 $</h2>
+        <h2 className="pt-5 text-4xl font-black leading-none text-green-600 dark:text-white">{product.price} $</h2>
 
       </div>
 
-      <button onClick={editProject} className='fixed z-10 bottom-5 left-0 right-0 h-12 w-full rounded text-white font-semibold'>
+      <button onClick={editProduct} className='fixed z-10 bottom-5 left-0 right-0 h-12 w-full rounded text-white font-semibold'>
         <div className='bg-green-500 mx-5 py-3 h-12 rounded text-white font-semibold'>
           <i className="fa-solid fa-truck"></i> Confirm Order
         </div>
